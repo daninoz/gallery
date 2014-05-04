@@ -1,4 +1,4 @@
-Galleryu
+Gallery
 =======
 
 Gallery uploader made with Laravel 4
