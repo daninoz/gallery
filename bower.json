@@ -1,0 +1,8 @@
+{
+    "name": "Acme",
+    "dependencies": {
+        "Bootstrap-3-Grid-Columns-Clearing": "https://github.com/sixfootsixdesigns/Bootstrap-3-Grid-Columns-Clearing.git",
+        "jquery": "~2.1.0",
+        "bootstrap": "~3.0.3"
+    }
+}
