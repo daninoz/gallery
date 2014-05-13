@@ -53,8 +53,7 @@ class AdminGalleriesController extends \BaseController
 
         if ($this->validator->validate()) {
             $gallery = $this->galleries->create(Input::all());
-
-            $this->uploadImages($gallery, Input::file('images-to-upload'));
+            $this->image->uploadWithThumbnail($gallery->newImages, Input::file('images-to-upload'));
 
             return Redirect::route('galleries.index');
         }
@@ -85,8 +84,7 @@ class AdminGalleriesController extends \BaseController
 
         if ($this->validator->validate()) {
             $gallery->update(Input::all());
-
-            $this->uploadImages($gallery, Input::file('images-to-upload'));
+            $this->image->uploadWithThumbnail($gallery->newImages, Input::file('images-to-upload'));
 
             return Redirect::route('galleries.index');
         }
@@ -115,19 +113,6 @@ class AdminGalleriesController extends \BaseController
     {
         $gallery->delete();
         return Redirect::route('galleries.index');
-    }
-
-    /**
-     * @param Gallery $gallery
-     * @param $imagesToUpload
-     */
-    protected function uploadImages(Gallery $gallery, $imagesToUpload = array())
-    {
-        foreach ($gallery->newImages as $key => $imageName) {
-            $image = $imagesToUpload[$key];
-            $this->image->uploadImage($imageName, $image->getRealPath());
-            $this->image->uploadThumbnail($imageName, $image->getRealPath());
-        }
     }
 
 }

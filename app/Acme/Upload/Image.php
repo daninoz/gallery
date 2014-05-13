@@ -39,4 +39,14 @@ class Image {
         \File::delete($this->thumbnail_path.$filename);
     }
 
+    public function uploadWithThumbnail($names, $input)
+    {
+        foreach ($names as $inputName => $name)
+        {
+            $image = $input[$inputName];
+            $this->uploadImage($name, $image->getRealPath());
+            $this->uploadThumbnail($name, $image->getRealPath());
+        }
+    }
+
 }
